@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { toast } from "sonner"
 import { setAuthToken } from "@/lib/auth"
 
-export default function LoginPage() {
+function LoginContent() {
   const [isLoading, setIsLoading] = useState(false)
   const [defaultTab, setDefaultTab] = useState("login")
   const router = useRouter()
@@ -33,7 +33,7 @@ export default function LoginPage() {
     console.log("Attempting login with username:", username)
 
     try {
-      const response = await fetch("http://localhost:8000/token", {
+      const response = await fetch("https://water-quality-backend-f49b.onrender.com/token", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -77,7 +77,7 @@ export default function LoginPage() {
     console.log("Attempting signup with username:", username)
 
     try {
-      const response = await fetch("http://localhost:8000/register", {
+      const response = await fetch("https://water-quality-backend-f49b.onrender.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -192,5 +192,13 @@ export default function LoginPage() {
         </Tabs>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   )
 } 

@@ -146,7 +146,7 @@ export interface ComparisonDashboardData {
 }
 
 // API client
-const API_BASE_URL = "http://localhost:8000"
+const API_BASE_URL = "https://water-quality-backend-f49b.onrender.com"
 
 // Helper function for authenticated fetch requests
 const authenticatedFetch = async (url: string, options?: RequestInit): Promise<Response> => {

@@ -15,7 +15,7 @@ export default function RegisterPage() {
     setError("");
     setSuccess("");
     try {
-      const res = await fetch("http://localhost:8000/register", {
+      const res = await fetch("https://water-quality-backend-f49b.onrender.com/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
